@@ -17,10 +17,19 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+//define checkbox array
+$f3->set('questions', array('This midterm is easy', 'I like midterms', 'Today is Monday'));
+
 //Define a default route
 $f3->route('GET /', function() {
     $view = new Template();
     echo $view-> render('views/default_route.html');
+});
+
+//Define a default route
+$f3->route('GET|POST /survey', function($f3) {
+    $view = new Template();
+    echo $view-> render('views/survey_form.html');
 });
 
 //Run Fat-free
