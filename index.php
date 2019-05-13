@@ -17,5 +17,11 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+//Define a default route
+$f3->route('GET /', function() {
+    $view = new Template();
+    echo $view-> render('views/default_route.html');
+});
+
 //Run Fat-free
 $f3->run();
