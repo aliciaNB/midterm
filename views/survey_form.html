@@ -6,22 +6,28 @@
 </head>
 <body>
     <h1>Midterm Survey</h1>
-    <label>Name
-        <input id="name" name="name">
-    </label>
 
-    <p>Check all that apply:
-        <check if="{{ @errors['option'] }}">
-            <span class="err">{{ @errors['cond'] }}</span>
+    <form method="post" action="#">
+
+        <label>Name
+            <input type="text" name="name" value="{{ @name }}">
+        </label>
+        <check if="{{ @errors['name']}}">
+            <span>{{ @errors['name'] }}</span>
         </check><br>
-        <repeat group="{{ @questions }}" value="{{ @question }}">
-            <label><input type="checkbox" name="questions[]" value="{{ @question }}"
-                <check if="{{ !(empty(@question)) && in_array(@question, @questions) }}">
-                    checked
-                </check>
-                >{{ @question }}</label><br>
-        </repeat>
-    </p>
-    <input type="submit" value="Submit">
+
+        <p>Check all that apply:
+            <check if="{{ @errors['answers'] }}">
+                <span>{{ @errors['answers'] }}</span>
+            </check><br>
+            <repeat group="{{ @answers }}" value="{{ @answerOption }}">
+                <label><input type="checkbox" name="ans[]" value="{{ @answerOption }}"
+                    <check if="{{ !(empty(@ans)) && in_array(@answerOption, @ans) }}">
+                        checked
+                    </check>>{{ @answerOption }}</label><br>
+            </repeat>
+        </p>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
